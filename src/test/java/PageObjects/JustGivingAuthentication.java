@@ -40,6 +40,7 @@ public class JustGivingAuthentication extends JustGivingPage<JustGivingAuthentic
     }
 
     public JustGivingPaymentMethod clickContinue() {
+        this.waitForElementToBeVisible(continueButton);
         clickButton(continueButton);
         JustGivingPaymentMethod justGivingPaymentMethod = new JustGivingPaymentMethod().initPage(JustGivingPaymentMethod.class);
         justGivingPaymentMethod.waitForPageToLoad(justGivingPaymentMethod.getPageLoadCondition());

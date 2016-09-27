@@ -4,6 +4,7 @@ package PageObjects;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedCondition;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.Wait;
 
@@ -17,7 +18,6 @@ public abstract class JustGivingPage<T> {
     private static final int REFRESH_RATE = 2;
 
     public T openPage(Class<T> clazz) {
-//        T page = PageFactory.initElements(getDriver(), clazz);
         T page = initPage(clazz);
         getDriver().get(BASE_URL + getPageUrl());
         ExpectedCondition pageLoadCondition = ((JustGivingPage) page).getPageLoadCondition();
@@ -36,6 +36,14 @@ public abstract class JustGivingPage<T> {
                 .pollingEvery(REFRESH_RATE, TimeUnit.SECONDS);
 
         wait.until(pageLoadCondition);
+    }
+
+    public void waitForElementToBeVisible(WebElement element){
+        Wait wait = new FluentWait(getDriver())
+                .withTimeout(LOAD_TIMEOUT, TimeUnit.SECONDS)
+                .pollingEvery(REFRESH_RATE, TimeUnit.SECONDS);
+
+        wait.until(ExpectedConditions.visibilityOf(element));
     }
 
     /**

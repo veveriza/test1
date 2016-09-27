@@ -82,10 +82,10 @@ public class JustGivingPaymentMethod extends JustGivingPage<JustGivingPaymentMet
         nameOnCard.sendKeys(RandomStringUtils.randomAlphanumeric(8));
     }
 
-    public JustGivingAuthentication clickContinue() {
+    public JustGivingBillingAddress clickContinue() {
         clickButton(continueButton);
-        JustGivingAuthentication justGivingAuthentication = new JustGivingAuthentication();
-        justGivingAuthentication.waitForPageToLoad(getPageLoadCondition());
-        return justGivingAuthentication;
+        JustGivingBillingAddress justGivingBillingAddress = new JustGivingBillingAddress().initPage(JustGivingBillingAddress.class);
+        justGivingBillingAddress.waitForPageToLoad(getPageLoadCondition());
+        return justGivingBillingAddress;
     }
 }
