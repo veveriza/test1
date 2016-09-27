@@ -7,22 +7,30 @@ import PageObjects.JustGivingMessageAndAmountPage;
 import PageObjects.JustGivingPaymentMethod;
 import PageObjects.JustGivingReviewAndDonate;
 import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
-
-import static DriverSetup.SeleniumSetup.getDriver;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 
 public class SampleTest {
 
+    private static WebDriver driver;
+
+    @BeforeClass
+    public static void setUp() throws Exception {
+        driver = new ChromeDriver();
+    }
+
     @AfterClass
     public static void tearDown() {
-        getDriver().close();
+        driver.close();
     }
 
     @Test
     public void should_not_login_with_wrong_credentials() throws InterruptedException {
 
         //given
-        JustGivingMessageAndAmountPage justGivingMessageAndAmountPage = new JustGivingMessageAndAmountPage().open();
+        JustGivingMessageAndAmountPage justGivingMessageAndAmountPage = new JustGivingMessageAndAmountPage(driver).open();
 
         //when
         justGivingMessageAndAmountPage.leaveMessage();

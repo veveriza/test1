@@ -2,6 +2,7 @@ package PageObjects;
 
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -9,6 +10,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 
 
 public class JustGivingMessageAndAmountPage extends JustGivingPage<JustGivingMessageAndAmountPage> {
+
+    public JustGivingMessageAndAmountPage(WebDriver driver) {
+        super(driver);
+    }
+
+    public static JustGivingMessageAndAmountPage create() {
+        JustGivingMessageAndAmountPage page = new JustGivingMessageAndAmountPage(getDriver());
+        page.initPage(JustGivingMessageAndAmountPage.class);
+        return page;
+    }
 
     @FindBy(id = "MessageAndAmount-fieldset")
     WebElement fieldSet;
@@ -32,14 +43,8 @@ public class JustGivingMessageAndAmountPage extends JustGivingPage<JustGivingMes
         return "/4w350m3/donation/direct/charity/2050#MessageAndAmount";
     }
 
-    //make private
-    @Override
-    public void clickButton(WebElement button) {
-        button.click();
-    }
-
     public JustGivingMessageAndAmountPage open() {
-        return new JustGivingMessageAndAmountPage().openPage(JustGivingMessageAndAmountPage.class);
+        return new JustGivingMessageAndAmountPage(getDriver()).openPage(JustGivingMessageAndAmountPage.class);
     }
 
     public void leaveMessage() {
@@ -51,8 +56,8 @@ public class JustGivingMessageAndAmountPage extends JustGivingPage<JustGivingMes
     }
 
     public JustGivingIdentity clickContinue() {
-        clickButton(continueButton);
-        JustGivingIdentity justGivingIdentity = new JustGivingIdentity().initPage(JustGivingIdentity.class);
+        continueButton.click();
+        JustGivingIdentity justGivingIdentity = JustGivingIdentity.create();
         justGivingIdentity.waitForPageToLoad(justGivingIdentity.getPageLoadCondition());
         return justGivingIdentity;
     }

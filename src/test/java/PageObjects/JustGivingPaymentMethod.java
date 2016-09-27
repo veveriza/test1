@@ -1,6 +1,7 @@
 package PageObjects;
 
 import org.apache.commons.lang3.RandomStringUtils;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -9,6 +10,16 @@ import org.openqa.selenium.support.ui.Select;
 import utils.MockDataGenerator;
 
 public class JustGivingPaymentMethod extends JustGivingPage<JustGivingPaymentMethod>{
+
+    public JustGivingPaymentMethod(WebDriver driver) {
+        super(driver);
+    }
+
+    public static JustGivingPaymentMethod create() {
+        JustGivingPaymentMethod page = new JustGivingPaymentMethod(getDriver());
+        page.initPage(JustGivingPaymentMethod.class);
+        return page;
+    }
 
     public static final String[] VISA_PREFIX_LIST = new String[] { "4539",
             "4556", "4916", "4532", "4929", "40240071", "4485", "4716", "4" };
@@ -48,12 +59,6 @@ public class JustGivingPaymentMethod extends JustGivingPage<JustGivingPaymentMet
         return "";
     }
 
-    //make invisible for the test
-    @Override
-    public void clickButton(WebElement button) {
-        button.click();
-    }
-
     public void selectCardType(){
         Select dropDown = new Select(selectCard);
         dropDown.selectByVisibleText("Visa Debit");
@@ -83,8 +88,8 @@ public class JustGivingPaymentMethod extends JustGivingPage<JustGivingPaymentMet
     }
 
     public JustGivingBillingAddress clickContinue() {
-        clickButton(continueButton);
-        JustGivingBillingAddress justGivingBillingAddress = new JustGivingBillingAddress().initPage(JustGivingBillingAddress.class);
+        continueButton.click();
+        JustGivingBillingAddress justGivingBillingAddress = JustGivingBillingAddress.create();
         justGivingBillingAddress.waitForPageToLoad(getPageLoadCondition());
         return justGivingBillingAddress;
     }

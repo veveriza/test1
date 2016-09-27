@@ -1,5 +1,6 @@
 package PageObjects;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
@@ -7,6 +8,16 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import utils.MockDataGenerator;
 
 public class JustGivingIdentity extends JustGivingPage<JustGivingIdentity> {
+
+    public JustGivingIdentity(WebDriver driver) {
+        super(driver);
+    }
+
+    public static JustGivingIdentity create() {
+        JustGivingIdentity page = new JustGivingIdentity(getDriver());
+        page.initPage(JustGivingIdentity.class);
+        return page;
+    }
 
     @FindBy(id = "Identity-fieldset")
     WebElement fieldSet;
@@ -24,23 +35,17 @@ public class JustGivingIdentity extends JustGivingPage<JustGivingIdentity> {
 
     @Override
     public String getPageUrl() {
-//        return "4w350m3/donation/direct/charity/2050#Identity";
         return "";
     }
 
-    //make invisible for the test
-    @Override
-    public void clickButton(WebElement button) {
-        button.click();
-    }
 
     public void enterEmailAddress() {
         emailAddress.sendKeys(MockDataGenerator.emailGenerator());
     }
 
     public JustGivingAuthentication clickContinue() {
-        clickButton(continueButton);
-        JustGivingAuthentication justGivingAuthentication = new JustGivingAuthentication().initPage(JustGivingAuthentication.class);
+        continueButton.click();
+        JustGivingAuthentication justGivingAuthentication = JustGivingAuthentication.create();
         justGivingAuthentication.waitForPageToLoad(justGivingAuthentication.getPageLoadCondition());
         return justGivingAuthentication;
     }

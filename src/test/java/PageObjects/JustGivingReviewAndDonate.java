@@ -1,11 +1,23 @@
 package PageObjects;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class JustGivingReviewAndDonate extends JustGivingPage<JustGivingReviewAndDonate>{
+
+
+    public JustGivingReviewAndDonate(WebDriver driver) {
+        super(driver);
+    }
+
+    public static JustGivingReviewAndDonate create() {
+        JustGivingReviewAndDonate page = new JustGivingReviewAndDonate(getDriver());
+        page.initPage(JustGivingReviewAndDonate.class);
+        return page;
+    }
 
     @FindBy(id = "MessageAndAmount-fieldset")
     WebElement fieldSet;
@@ -21,12 +33,6 @@ public class JustGivingReviewAndDonate extends JustGivingPage<JustGivingReviewAn
     @Override
     public String getPageUrl() {
         return "";
-    }
-
-    //make invisible for the test
-    @Override
-    public void clickButton(WebElement button) {
-        button.click();
     }
 
     public boolean isDonateNowDisplayed(){
