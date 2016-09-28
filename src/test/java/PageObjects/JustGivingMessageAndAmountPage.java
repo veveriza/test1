@@ -15,12 +15,6 @@ public class JustGivingMessageAndAmountPage extends JustGivingPage<JustGivingMes
         super(driver);
     }
 
-    public static JustGivingMessageAndAmountPage create() {
-        JustGivingMessageAndAmountPage page = new JustGivingMessageAndAmountPage(getDriver());
-        page.initPage(JustGivingMessageAndAmountPage.class);
-        return page;
-    }
-
     @FindBy(id = "MessageAndAmount-fieldset")
     WebElement fieldSet;
 
@@ -56,8 +50,9 @@ public class JustGivingMessageAndAmountPage extends JustGivingPage<JustGivingMes
     }
 
     public JustGivingIdentity clickContinue() {
+        waitForElementToBeVisible(continueButton);
         continueButton.click();
-        JustGivingIdentity justGivingIdentity = JustGivingIdentity.create();
+        JustGivingIdentity justGivingIdentity = new JustGivingIdentity(getDriver()).initPage(JustGivingIdentity.class);
         justGivingIdentity.waitForPageToLoad(justGivingIdentity.getPageLoadCondition());
         return justGivingIdentity;
     }

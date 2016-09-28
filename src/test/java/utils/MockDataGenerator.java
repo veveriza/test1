@@ -13,17 +13,14 @@ public class MockDataGenerator {
 
     private static Random random = new Random(System.currentTimeMillis());
 
-    /**
-     *
-     * @param bin
-     *            The bank identification number, a set digits at the start of the credit card
-     *            number, used to identify the bank that is issuing the credit card.
-     * @param length
-     *            The total length (i.e. including the BIN) of the credit card number.
-     * @return
-     *            A randomly generated, valid, credit card number.
-     */
-    public static String generate(String bin, int length) {
+    public static final String[] VISA_PREFIX = new String[] { "4539",
+            "4556", "4916", "4532", "4929", "40240071", "4485", "4716", "4" };
+
+
+    public static String generate(int length) {
+        Random rand = new Random();
+        int index = rand.nextInt(VISA_PREFIX.length);
+        String bin = VISA_PREFIX[index];
 
         // The number of random digits that we need to generate is equal to the
         // total length of the card number minus the start digits given by the

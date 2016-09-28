@@ -18,7 +18,7 @@ public abstract class JustGivingPage<T> {
     static WebDriver driver;
 
     public JustGivingPage(WebDriver driver) {
-        this.driver = driver;
+        JustGivingPage.driver = driver;
     }
 
     protected static WebDriver getDriver() {

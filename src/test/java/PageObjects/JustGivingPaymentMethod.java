@@ -15,19 +15,6 @@ public class JustGivingPaymentMethod extends JustGivingPage<JustGivingPaymentMet
         super(driver);
     }
 
-    public static JustGivingPaymentMethod create() {
-        JustGivingPaymentMethod page = new JustGivingPaymentMethod(getDriver());
-        page.initPage(JustGivingPaymentMethod.class);
-        return page;
-    }
-
-    public static final String[] VISA_PREFIX_LIST = new String[] { "4539",
-            "4556", "4916", "4532", "4929", "40240071", "4485", "4716", "4" };
-
-    public static final String[] MASTERCARD_PREFIX_LIST = new String[] { "51",
-            "52", "53", "54", "55" };
-
-
     @FindBy(id = "Payment-fieldset")
     WebElement fieldSet;
 
@@ -80,7 +67,7 @@ public class JustGivingPaymentMethod extends JustGivingPage<JustGivingPaymentMet
         //make it to select randomly form the array
         //http://codytaylor.org/2009/11/this-is-how-credit-card-numbers-are-generated.html
         //http://euro.ecom.cmu.edu/resources/elibrary/everycc.htm
-        cardNumber.sendKeys(MockDataGenerator.generate(VISA_PREFIX_LIST[0], 16));
+        cardNumber.sendKeys(MockDataGenerator.generate(16));
     }
 
     public void setNameOnCard() {
@@ -88,8 +75,9 @@ public class JustGivingPaymentMethod extends JustGivingPage<JustGivingPaymentMet
     }
 
     public JustGivingBillingAddress clickContinue() {
+        waitForElementToBeVisible(continueButton);
         continueButton.click();
-        JustGivingBillingAddress justGivingBillingAddress = JustGivingBillingAddress.create();
+        JustGivingBillingAddress justGivingBillingAddress = new JustGivingBillingAddress(getDriver()).initPage(JustGivingBillingAddress.class);
         justGivingBillingAddress.waitForPageToLoad(getPageLoadCondition());
         return justGivingBillingAddress;
     }

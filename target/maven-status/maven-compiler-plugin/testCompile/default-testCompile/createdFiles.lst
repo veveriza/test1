@@ -1,1 +1,11 @@
-SampleTest.class
+StepDefinitions/StepDefinitions.class
+PageObjects/JustGivingPaymentMethod.class
+Test/SampleTest.class
+PageObjects/JustGivingIdentity.class
+DriverSetup/SeleniumSetup.class
+PageObjects/JustGivingAuthentication.class
+PageObjects/JustGivingMessageAndAmountPage.class
+PageObjects/JustGivingPage.class
+utils/MockDataGenerator.class
+PageObjects/JustGivingBillingAddress.class
+PageObjects/JustGivingReviewAndDonate.class

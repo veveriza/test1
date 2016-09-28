@@ -13,12 +13,6 @@ public class JustGivingAuthentication extends JustGivingPage<JustGivingAuthentic
         super(driver);
     }
 
-    public static JustGivingAuthentication create() {
-        JustGivingAuthentication page = new JustGivingAuthentication(getDriver());
-        page.initPage(JustGivingAuthentication.class);
-        return page;
-    }
-
     @FindBy(id = "Authentication-fieldset")
     WebElement fieldSet;
 
@@ -43,9 +37,9 @@ public class JustGivingAuthentication extends JustGivingPage<JustGivingAuthentic
     }
 
     public JustGivingPaymentMethod clickContinue() {
-        this.waitForElementToBeVisible(continueButton);
+        waitForElementToBeVisible(continueButton);
         continueButton.click();
-        JustGivingPaymentMethod justGivingPaymentMethod = JustGivingPaymentMethod.create();
+        JustGivingPaymentMethod justGivingPaymentMethod = new JustGivingPaymentMethod(getDriver()).initPage(JustGivingPaymentMethod.class);
         justGivingPaymentMethod.waitForPageToLoad(justGivingPaymentMethod.getPageLoadCondition());
         return justGivingPaymentMethod;
     }

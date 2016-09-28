@@ -13,12 +13,6 @@ public class JustGivingIdentity extends JustGivingPage<JustGivingIdentity> {
         super(driver);
     }
 
-    public static JustGivingIdentity create() {
-        JustGivingIdentity page = new JustGivingIdentity(getDriver());
-        page.initPage(JustGivingIdentity.class);
-        return page;
-    }
-
     @FindBy(id = "Identity-fieldset")
     WebElement fieldSet;
 
@@ -44,8 +38,9 @@ public class JustGivingIdentity extends JustGivingPage<JustGivingIdentity> {
     }
 
     public JustGivingAuthentication clickContinue() {
+        waitForElementToBeVisible(continueButton);
         continueButton.click();
-        JustGivingAuthentication justGivingAuthentication = JustGivingAuthentication.create();
+        JustGivingAuthentication justGivingAuthentication = new JustGivingAuthentication(getDriver()).initPage(JustGivingAuthentication.class);
         justGivingAuthentication.waitForPageToLoad(justGivingAuthentication.getPageLoadCondition());
         return justGivingAuthentication;
     }

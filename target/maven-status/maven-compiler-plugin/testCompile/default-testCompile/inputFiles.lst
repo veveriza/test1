@@ -1,1 +1,11 @@
-/Users/vpuscas/proj/selenium-test/src/test/java/SampleTest.java
+/Users/vpuscas/proj/test1/src/test/java/PageObjects/JustGivingAuthentication.java
+/Users/vpuscas/proj/test1/src/test/java/StepDefinitions/StepDefinitions.java
+/Users/vpuscas/proj/test1/src/test/java/Test/SampleTest.java
+/Users/vpuscas/proj/test1/src/test/java/PageObjects/JustGivingIdentity.java
+/Users/vpuscas/proj/test1/src/test/java/PageObjects/JustGivingMessageAndAmountPage.java
+/Users/vpuscas/proj/test1/src/test/java/PageObjects/JustGivingPaymentMethod.java
+/Users/vpuscas/proj/test1/src/test/java/PageObjects/JustGivingPage.java
+/Users/vpuscas/proj/test1/src/test/java/PageObjects/JustGivingReviewAndDonate.java
+/Users/vpuscas/proj/test1/src/test/java/DriverSetup/SeleniumSetup.java
+/Users/vpuscas/proj/test1/src/test/java/utils/MockDataGenerator.java
+/Users/vpuscas/proj/test1/src/test/java/PageObjects/JustGivingBillingAddress.java

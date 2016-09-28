@@ -13,12 +13,6 @@ public class JustGivingReviewAndDonate extends JustGivingPage<JustGivingReviewAn
         super(driver);
     }
 
-    public static JustGivingReviewAndDonate create() {
-        JustGivingReviewAndDonate page = new JustGivingReviewAndDonate(getDriver());
-        page.initPage(JustGivingReviewAndDonate.class);
-        return page;
-    }
-
     @FindBy(id = "MessageAndAmount-fieldset")
     WebElement fieldSet;
 
@@ -36,6 +30,7 @@ public class JustGivingReviewAndDonate extends JustGivingPage<JustGivingReviewAn
     }
 
     public boolean isDonateNowDisplayed(){
-        return donateButton.isDisplayed();
+        waitForElementToBeVisible(donateButton);
+        return true;
     }
 }

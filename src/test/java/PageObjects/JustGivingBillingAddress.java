@@ -13,12 +13,6 @@ public class JustGivingBillingAddress extends JustGivingPage<JustGivingBillingAd
         super(driver);
     }
 
-    public static JustGivingBillingAddress create() {
-        JustGivingBillingAddress page = new JustGivingBillingAddress(getDriver());
-        page.initPage(JustGivingBillingAddress.class);
-        return page;
-    }
-
     @FindBy(id = "Payment_BillingAddress-fieldset")
     WebElement fieldSet;
 
@@ -73,8 +67,9 @@ public class JustGivingBillingAddress extends JustGivingPage<JustGivingBillingAd
     }
 
     public JustGivingReviewAndDonate clickContinue() {
+        waitForElementToBeVisible(continueButton);
         continueButton.click();
-        JustGivingReviewAndDonate justGivingReviewAndDonate = JustGivingReviewAndDonate.create();
+        JustGivingReviewAndDonate justGivingReviewAndDonate = new JustGivingReviewAndDonate(getDriver()).initPage(JustGivingReviewAndDonate.class);
         justGivingReviewAndDonate.waitForPageToLoad(getPageLoadCondition());
         return justGivingReviewAndDonate;
     }
